@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PlantFactoryUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="768" Width="1366">
     <Grid>
-        
+        <Menu Background="Transparent" Grid.Row="0" Grid.ColumnSpan="4" Margin="0,0,0,0.5">
+            <MenuItem FontFamily="Droid Sans Fallback" Background="Transparent" Header="options">
+                <MenuItem FontFamily="Droid Sans Fallback" Background="Transparent" Header="OpenPort" Click="Window_Loaded"/>
+            </MenuItem>
+        </Menu>
+        <TextBlock Name="Parameter1" HorizontalAlignment="Left" Margin="10,59,0,0" TextWrapping="Wrap" Text="parameter1:" VerticalAlignment="Top"/>
+        <TextBlock Name="Parameter2" HorizontalAlignment="Left" Margin="10,79,0,0" TextWrapping="Wrap" Text="parameter2:" VerticalAlignment="Top"/>
+        <TextBlock Name="Parameter3" HorizontalAlignment="Left" Margin="10,99,0,0" TextWrapping="Wrap" Text="parameter3:" VerticalAlignment="Top"/>
+        <TextBlock Name="Parameter4" HorizontalAlignment="Left" Margin="10,119,0,0" TextWrapping="Wrap" Text="parameter4:" VerticalAlignment="Top"/>
+        <TextBlock Name="Parameter5" HorizontalAlignment="Left" Margin="10,139,0,0" TextWrapping="Wrap" Text="parameter5:" VerticalAlignment="Top"/>
     </Grid>
 </Window>
