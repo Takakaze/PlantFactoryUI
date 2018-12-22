@@ -8,14 +8,26 @@
         Title="MainWindow" Height="768" Width="1366">
     <Grid>
         <Menu Background="Transparent" Grid.Row="0" Grid.ColumnSpan="4" Margin="0,0,0,0.5">
-            <MenuItem FontFamily="Droid Sans Fallback" Background="Transparent" Header="options">
-                <MenuItem FontFamily="Droid Sans Fallback" Background="Transparent" Header="OpenPort" Click="Window_Loaded"/>
+            <MenuItem FontFamily="Droid Sans Fallback" Background="Transparent" Header="SerialPort options">
+                <MenuItem Name="Ports" FontFamily="Droid Sans Fallback" Background="Transparent" Header="OpenPort" Click="Window_Loaded"/>
+                <MenuItem FontFamily="Droid Sans Fallback" Background="Transparent" Header="SearchPort" Click="SearchPort"/>
+            </MenuItem>
+            <MenuItem FontFamily="Droid Sans Fallback" Background="Transparent" Header="SocketCom options">
+                <MenuItem Name="Socket" FontFamily="Droid Sans Fallback" Background="Transparent" Header="OpenPort" Click="SocketStart"/>
             </MenuItem>
         </Menu>
-        <TextBlock Name="Parameter1" HorizontalAlignment="Left" Margin="10,59,0,0" TextWrapping="Wrap" Text="parameter1:" VerticalAlignment="Top"/>
+        <TextBlock Name="Parameter1" HorizontalAlignment="Left" Margin="10,59,0,0" TextWrapping="Wrap" Text="parameter1:" VerticalAlignment="Top" Width="220"/>
+        <TextBox Name="Par1" IsReadOnly="True" Margin="100,59,0,0" Height="18" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Width="100"/>
         <TextBlock Name="Parameter2" HorizontalAlignment="Left" Margin="10,79,0,0" TextWrapping="Wrap" Text="parameter2:" VerticalAlignment="Top"/>
+        <TextBox Name="Par2" IsReadOnly="True" Margin="100,79,0,0" Height="18" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Width="100"/>
         <TextBlock Name="Parameter3" HorizontalAlignment="Left" Margin="10,99,0,0" TextWrapping="Wrap" Text="parameter3:" VerticalAlignment="Top"/>
+        <TextBox Name="Par3" IsReadOnly="True" Margin="100,99,0,0" Height="18" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Width="100"/>
         <TextBlock Name="Parameter4" HorizontalAlignment="Left" Margin="10,119,0,0" TextWrapping="Wrap" Text="parameter4:" VerticalAlignment="Top"/>
+        <TextBox Name="Par4" IsReadOnly="True" Margin="100,119,0,0" Height="18" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Width="100"/>
         <TextBlock Name="Parameter5" HorizontalAlignment="Left" Margin="10,139,0,0" TextWrapping="Wrap" Text="parameter5:" VerticalAlignment="Top"/>
+        <TextBox Name="Par5" IsReadOnly="True" Margin="100,139,0,0" Height="18" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Width="100"/>
+        <TextBox Name="SocketStatus" IsReadOnly="True" Margin="235,10,0,0" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Width="298"/>
+
+        <ComboBox Name="CMBox" Margin="10,179,0,0" Height="18" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>
