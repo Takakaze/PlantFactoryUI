@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Windows;
 using System.Net;
+using Newtonsoft.Json;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -16,6 +17,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Net.Sockets;
 using System.Threading.Tasks;
+using System.IO;
+using Microsoft.Win32;
 
 namespace PlantFactoryUI
 {
@@ -168,7 +171,7 @@ namespace PlantFactoryUI
 
 
         /// <summary>
-        /// 
+        /// open server and made client able to connect
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -191,7 +194,7 @@ namespace PlantFactoryUI
         }
 
         /// <summary>
-        /// 
+        /// client connected to server 
         /// </summary>
         /// <param name="IAR"></param>
         public void ClientConnected(IAsyncResult IAR)
@@ -206,6 +209,10 @@ namespace PlantFactoryUI
             socket.BeginAccept(new AsyncCallback(ClientConnected), socket);
         }
 
+        /// <summary>
+        /// receive message from client
+        /// </summary>
+        /// <param name="IAR"></param>
         public void MSGreceive(IAsyncResult IAR)
         {
             int length = 0;
@@ -233,6 +240,23 @@ namespace PlantFactoryUI
                 this.Dispatcher.Invoke(new Action(() => SocketStatus.Text += DateTime.Now.ToString("MM-dd HH:mm:ss")));
                 this.Dispatcher.Invoke(new Action(() => SocketStatus.Text += (IPEP + " disconnected\n" + "Total Connects:" + count.ToString() + "\n")));
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SaveJSON(object sender, RoutedEventArgs e)
+        {
+            string jsn = JsonConvert.SerializeObject(LST, Formatting.Indented);
+            SaveFileDialog SFD = new SaveFileDialog();
+//            SFD.
+        }
+
+        private void LoadJSON(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
