@@ -10,5 +10,7 @@ namespace PlantFactoryUI
     {
         public byte[] buffer { get; set; }
         public string strMem { get; set; }
+        public string IPadd;
+        public int port;
     }
 }

@@ -205,7 +205,7 @@ namespace PlantFactoryUI
             IPEndPoint IPEP = (IPEndPoint)client.RemoteEndPoint;
             this.Dispatcher.Invoke(new Action(() => SocketStatus.Text += DateTime.Now.ToString("MM-dd HH:mm:ss")));
             this.Dispatcher.Invoke(new Action(() => SocketStatus.Text += (IPEP + "is connected\n" + "Total Connects:" + count.ToString() + "\n")));
-            client.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, new AsyncCallback(MSGreceive), client);
+             client.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, new AsyncCallback(MSGreceive), client);
             socket.BeginAccept(new AsyncCallback(ClientConnected), socket);
         }
 
@@ -227,7 +227,9 @@ namespace PlantFactoryUI
                 LST.Add(new data
                 {
                     buffer = buffer,
-                    strMem = msg
+                    strMem = msg,
+                    IPadd = IPEP.Address.ToString(),
+                    port = IPEP.Port
                 });
                 this.Dispatcher.Invoke(new Action(() => SocketStatus.Text += DateTime.Now.ToString("MM-dd HH:mm:ss")));
                 this.Dispatcher.Invoke(new Action(() => SocketStatus.Text += (IPEP + ":" + msg + "\n")));
@@ -251,7 +253,15 @@ namespace PlantFactoryUI
         {
             string jsn = JsonConvert.SerializeObject(LST, Formatting.Indented);
             SaveFileDialog SFD = new SaveFileDialog();
-//            SFD.
+            SFD.Filter = @"JSONfile|*.json|TestFile|*.txt";
+            Nullable<bool> REC = SFD.ShowDialog();
+            if (REC == true)
+            {
+                FileStream fs = new FileStream(SFD.FileName, FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite);
+                StreamWriter sw = new StreamWriter(fs, new UTF8Encoding(false));
+                sw.Write(jsn);
+                sw.Close();
+            }
         }
 
         private void LoadJSON(object sender, RoutedEventArgs e)
