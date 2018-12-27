@@ -227,7 +227,7 @@ namespace PlantFactoryUI
                 LST.Add(new data
                 {
                     buffer = buffer,
-                    strMem = msg,
+                    strMem = msg, 
                     IPadd = IPEP.Address.ToString(),
                     port = IPEP.Port
                 });
@@ -245,13 +245,13 @@ namespace PlantFactoryUI
         }
 
         /// <summary>
-        /// 
+        /// save Clienttext into JSON file
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void SaveJSON(object sender, RoutedEventArgs e)
         {
-            string jsn = JsonConvert.SerializeObject(LST, Formatting.Indented);
+            string JsonStr = JsonConvert.SerializeObject(LST, Formatting.Indented);
             SaveFileDialog SFD = new SaveFileDialog();
             SFD.Filter = @"JSONfile|*.json|TestFile|*.txt";
             Nullable<bool> REC = SFD.ShowDialog();
@@ -259,14 +259,34 @@ namespace PlantFactoryUI
             {
                 FileStream fs = new FileStream(SFD.FileName, FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite);
                 StreamWriter sw = new StreamWriter(fs, new UTF8Encoding(false));
-                sw.Write(jsn);
+                sw.Write(JsonStr);
                 sw.Close();
             }
         }
 
+        /// <summary>
+        /// Load JSON into data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LoadJSON(object sender, RoutedEventArgs e)
         {
-
-        }
+            var MSGB = MessageBox.Show("This will erase your current data, do you wish to continue?", "ShimaRin Warning", MessageBoxButton.YesNo);
+            if (MSGB == MessageBoxResult.Yes)
+            {
+                OpenFileDialog ofd = new OpenFileDialog();
+                ofd.Filter = @"JSONfile|*.json|TestFile|*.txt";
+                Nullable<bool> REC = ofd.ShowDialog();
+                if (REC == true)
+                {
+                    StreamReader sr = new StreamReader(ofd.FileName);
+                    string JsonStr = sr.ReadToEnd();
+                    LST = JsonConvert.DeserializeObject<List<data>>(JsonStr);
+                }
+            }
+            else
+            {
+            }
+;        }
     }
 }
