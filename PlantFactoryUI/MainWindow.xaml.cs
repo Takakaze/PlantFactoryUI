@@ -134,7 +134,8 @@ namespace PlantFactoryUI
             LST.Add(new data
             {
                 buffer = readBuffer,
-                strMem = str
+                strMem = str,
+                DTime = DateTime.Now.ToString()
             });
             //HIU = new HandleInterfaceUpdate(UpdateTextBox);
             Dispatcher.Invoke(HIU, new string[] { Encoding.ASCII.GetString(readBuffer) });
@@ -228,6 +229,7 @@ namespace PlantFactoryUI
                 {
                     buffer = buffer,
                     strMem = msg, 
+                    DTime = DateTime.Now.ToString(),
                     IPadd = IPEP.Address.ToString(),
                     port = IPEP.Port
                 });
