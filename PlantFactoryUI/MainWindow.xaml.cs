@@ -235,7 +235,7 @@ namespace PlantFactoryUI
                 });
                 this.Dispatcher.Invoke(new Action(() => SocketStatus.Text += DateTime.Now.ToString("MM-dd HH:mm:ss")));
                 this.Dispatcher.Invoke(new Action(() => SocketStatus.Text += (IPEP + ":" + msg + "\n")));
-                socket.Send(Encoding.UTF8.GetBytes("Data Received"));
+                socket.Send(Encoding.UTF8.GetBytes("Data Received");
                 socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, new AsyncCallback(MSGreceive), socket);
             }
             catch (Exception ex)
